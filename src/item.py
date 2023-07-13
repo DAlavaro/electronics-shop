@@ -5,7 +5,7 @@ class Item:
     instances = []
 
     def __init__(self, name, price, quantity):
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
         self.instances.append(self)
@@ -20,3 +20,15 @@ class Item:
     @classmethod
     def all(cls):
         return cls.instances
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, value):
+        if len(value) > 10:
+            self.name = value[:10]
+        self.__name = value
+
+
