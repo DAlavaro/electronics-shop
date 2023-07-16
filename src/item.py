@@ -23,9 +23,9 @@ class Item:
     def all(cls):
         return cls.instances
 
-    # @classmethod
-    # def get_instance_count(cls):
-    #     return len(cls.instances)
+    @classmethod
+    def get_instance_count(cls):
+        return len(cls.instances)
 
     @property
     def name(self):
