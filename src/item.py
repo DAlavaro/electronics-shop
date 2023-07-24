@@ -64,6 +64,8 @@ class Item:
         """Delete all instances"""
         cls.instances.clear()
 
-
-
-
+    def __add__(self, other):
+        if issubclass(other.__class__, self.__class__):
+            return self.quantity + other.quantity
+        else:
+            raise TypeError("Can only add Item or Phone instances")
