@@ -1,4 +1,5 @@
 from src.item import Item
+from src.phone import Phone
 
 
 def test_calculate_total_price():
@@ -21,3 +22,35 @@ def test_all():
     items = Item.all()
     assert item1 in items
     assert item2 in items
+
+def test_name():
+    item = Item('Телефон', 10000, 5)
+    item.name = 'Смартфон'
+    assert item.name == 'Смартфон'
+
+    item.name = 'СуперСмартфон'
+    assert item.name == 'СуперСмарт'
+
+def test_instantiate_from_csv():
+
+    Item.instantiate_from_csv()
+    assert len(Item.all()) == 9
+
+    item1 = Item.all()[5]
+    assert item1.name == 'Ноутбук'
+
+def test_string_to_number():
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5
+
+def test_repr_and_str():
+    item = Item("Смартфон", 10000, 20)
+    assert repr(item) == "Item('Смартфон', 10000, 20)"
+    assert str(item) == 'Смартфон'
+
+def test_add():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    item1 = Item("Смартфон", 10000, 20)
+    assert phone1 + phone1 == 10
+    assert item1 + phone1 == 25
